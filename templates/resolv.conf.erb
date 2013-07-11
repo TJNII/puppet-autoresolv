@@ -1,0 +1,19 @@
+# PUPPET MANAGED FILE : DO NOT EDIT
+# Nameserver records generated automatically from <%= resolv_domain %> NS records
+#
+domain <%= resolv_domain %>
+search <%= resolv_domain %>
+<% 
+require '/etc/puppet/modules/autoresolv/templates/helpers.rb'
+ips = getNameserverIPs(resolv_domain)
+# Combine in the fallback IPs.
+# If the fallbacks duplicate NS records uniq them out.
+ips = ips.concat(fallback_nameserver_ips)
+# uniq has problems with this array without a bit of finesse.
+ips.map! { |s| s.to_s.strip }
+ips.uniq!
+
+sortIPs(ips, resolv_sort_ipaddress).each do |server| 
+-%>
+nameserver <%= server %>
+<% end -%>
