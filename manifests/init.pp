@@ -9,6 +9,8 @@
 #   All nameservers in the $resolv_domain NS records and fallback_nameserver_ips should allow recursion
 #      from the clients.  (Not really a module requirement, but you're gonna have a bad time without this.)
 #
+#   ipaddress_internal is provided by the commonfacts module
+#
 # 2013 TJNII
 #
 class autoresolv (
