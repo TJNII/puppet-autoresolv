@@ -13,7 +13,7 @@ def getNameserverIPs(domain, addrtype = Resolv::DNS::Resource::IN::A)
   myresolv = Resolv::DNS.new()
 
   nameserver_addresses=Array.new
-  myresolv.each_resource("tjnii.com", Resolv::DNS::Resource::IN::NS) do |nsrsc|
+  myresolv.each_resource(domain, Resolv::DNS::Resource::IN::NS) do |nsrsc|
     nameserver_addresses.push(myresolv.getresource(nsrsc.name, addrtype).address)
   end
 
