@@ -4,7 +4,7 @@
 domain <%= resolv_domain %>
 search <%= resolv_domain %>
 <% 
-require '/etc/puppet/modules/autoresolv/templates/helpers.rb'
+require File.dirname(__FILE__) + '/helpers.rb'
 ips = getNameserverIPs(resolv_domain)
 # Combine in the fallback IPs.
 # If the fallbacks duplicate NS records uniq them out.
